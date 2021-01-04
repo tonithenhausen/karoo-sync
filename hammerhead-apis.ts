@@ -33,6 +33,15 @@ export const hammerheadDashboardLogin = async (username: string, password: strin
     }
 }
 
+export const hammerheadSync = async (hammerheadAuthorization: HammerheadAuthorization) => {
+    var routesResponse = await fetch(`https://dashboard.hammerhead.io/v1/users/${hammerheadAuthorization.userId}/routes/sync`, {
+        method: 'POST',
+        headers: {
+            "Authorization": `Bearer ${hammerheadAuthorization.accessToken}`
+        },
+    });    
+}
+
 export const hammerheadGetRoutes = async (hammerheadAuthorization: HammerheadAuthorization, pageSize = 50): Promise<HammerheadRoute[]> => {
     const routes = [];
     for (let page = 1; ; page++) {
